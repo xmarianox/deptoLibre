@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Depto Libre</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Pantalla principal -->
+    <string name="buscar_depto">Dónde buscas?</string>
+    <string name="btn_buscar">Buscar</string>
+    <string name="fecha">dd/mm/aa</string>
+    <string name="huesped">1 Huesped</string>
+    <string name="description_img">Imagen del departamento</string>
+    <string name="title_activity_listado">ListadoActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>

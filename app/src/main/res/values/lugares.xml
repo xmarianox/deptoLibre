@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="lugares_array">
+        <item>Brasil</item>
+        <item>Bs.As. Costa Atlántica</item>
+        <item>Bs.As. G.B.A. Norte</item>
+        <item>Bs.As. G.B.A. Oeste</item>
+        <item>Bs.As. G.B.A. Sur</item>
+        <item>Buenos Aires Interior</item>
+        <item>Capital Federal</item>
+        <item>Catamarca</item>
+        <item>Chaco</item>
+        <item>Chubut</item>
+        <item>Corrientes</item>
+        <item>Córdoba</item>
+        <item>Entre Ríos</item>
+        <item>Formosa</item>
+        <item>Jujuy</item>
+        <item>La Pampa</item>
+        <item>La Rioja</item>
+        <item>Mendoza</item>
+        <item>Misiones</item>
+        <item>Neuquén</item>
+        <item>Paraguay</item>
+        <item>República Dominicana</item>
+        <item>Río Negro</item>
+        <item>Salta</item>
+        <item>San Juan</item>
+        <item>San Luis</item>
+        <item>Santa Cruz</item>
+        <item>Santa Fe</item>
+        <item>Santiago del Estero</item>
+        <item>Tierra del Fuego</item>
+        <item>Tucumán</item>
+        <item>USA</item>
+        <item>Uruguay</item>
+    </string-array>
+</resources>
