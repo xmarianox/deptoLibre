@@ -125,6 +125,9 @@ public class ListadoActivity extends ListActivity {
                     String thumbnail = listadoJson.getString("thumbnail");
                     int price = listadoJson.getInt("price");
 
+                    //Log.i("Datos Traidos por el jason: Title: ", title);
+                    //Log.i("Datos Traidos por el jason: SubTitle: ", subtitle);
+
                     //public MeliListItem (int image, int price, String title, String description)
                     lista_meli.add(new MeliListItem(R.drawable.img_depto, price, title, subtitle));
                 }

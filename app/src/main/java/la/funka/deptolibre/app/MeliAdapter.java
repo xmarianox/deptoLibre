@@ -36,12 +36,19 @@ public class MeliAdapter extends ArrayAdapter<MeliListItem> {
             holder.meli_img = (ImageView) row.findViewById(R.id.meli_img);
             holder.meli_price = (TextView) row.findViewById(R.id.meli_price);
             holder.meli_title = (TextView) row.findViewById(R.id.meli_title);
-            holder.meli_description = (TextView) row.findViewById(R.id.meli_description);
+            //holder.meli_description = (TextView) row.findViewById(R.id.meli_description);
 
             row.setTag(holder);
         } else {
             holder = (MeliHolder) row.getTag();
         }
+
+        MeliListItem items = data.get(position);
+        holder.meli_img.setImageResource(items.getImage());
+        holder.meli_price.setText("$"+String.valueOf(items.getPrecio()));
+        holder.meli_title.setText(items.getTitle().toString());
+        //holder.meli_description.setText(items.getDescription().toString());
+
         return row;
     }
 
@@ -49,6 +56,6 @@ public class MeliAdapter extends ArrayAdapter<MeliListItem> {
         ImageView meli_img;
         TextView meli_price;
         TextView meli_title;
-        TextView meli_description;
+        //TextView meli_description;
     }
 }
