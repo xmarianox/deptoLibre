@@ -43,7 +43,6 @@ public class ListadoActivity extends ListActivity {
 
         // Enviamos la consulta a la api.
         try {
-            http://www.deptolibre.com/api/v1/realestate/search?State=TUxBUENBUGw3M2E1&From=20/10/2014&Until=20/11/2014&Guests=2
             new BuscarMeli().execute("http://www.deptolibre.com/api/v1/realestate/search?State="+ URLEncoder.encode(lugar_id, "utf-8") +"&From="+ URLEncoder.encode(desde, "utf-8") +"&Until="+ URLEncoder.encode(hasta, "utf-8") +"&Guests="+ URLEncoder.encode(huespedes, "utf-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -129,7 +128,7 @@ public class ListadoActivity extends ListActivity {
                     //Log.i("Datos Traidos por el jason: SubTitle: ", subtitle);
 
                     //public MeliListItem (int image, int price, String title, String description)
-                    lista_meli.add(new MeliListItem(R.drawable.img_depto, price, title, subtitle));
+                    lista_meli.add(new MeliListItem(thumbnail, price, title, subtitle));
                 }
                 meliAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
@@ -139,5 +138,4 @@ public class ListadoActivity extends ListActivity {
 
         }
     }
-
 }

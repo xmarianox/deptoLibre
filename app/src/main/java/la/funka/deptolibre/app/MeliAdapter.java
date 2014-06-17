@@ -2,6 +2,10 @@ package la.funka.deptolibre.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MeliAdapter extends ArrayAdapter<MeliListItem> {
@@ -44,8 +49,8 @@ public class MeliAdapter extends ArrayAdapter<MeliListItem> {
         }
 
         MeliListItem items = data.get(position);
-        holder.meli_img.setImageResource(items.getImage());
-        holder.meli_price.setText("$"+String.valueOf(items.getPrecio()));
+        new DownloadImageTask(holder.meli_img).execute(items.getImageURL());
+        holder.meli_price.setText("$" + String.valueOf(items.getPrecio()));
         holder.meli_title.setText(items.getTitle().toString());
         //holder.meli_description.setText(items.getDescription().toString());
 
@@ -57,5 +62,34 @@ public class MeliAdapter extends ArrayAdapter<MeliListItem> {
         TextView meli_price;
         TextView meli_title;
         //TextView meli_description;
+    }
+
+    /**
+     *   Descargar la imagen del inmueble
+     *   new DownloadImageTask(holder.meli_img).execute(items.getImageURL());
+     * */
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView miImageView;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.miImageView = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            miImageView.setImageBitmap(result);
+        }
     }
 }

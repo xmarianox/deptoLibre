@@ -1,7 +1,7 @@
 package la.funka.deptolibre.app;
 
 public class MeliListItem {
-    private int image;
+    private String image;
     private int price;
     private String title;
     private String description;
@@ -10,7 +10,7 @@ public class MeliListItem {
         super();
     }
 
-    public MeliListItem (int image, int price, String title, String description) {
+    public MeliListItem (String image, int price, String title, String description) {
         super();
         this.image = image;
         this.price = price;
@@ -18,11 +18,11 @@ public class MeliListItem {
         this.description = description;
     }
 
-    public int getImage() {
+    public String getImageURL() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImageURL(String image) {
         this.image = image;
     }
 
