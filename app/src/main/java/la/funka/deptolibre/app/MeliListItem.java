@@ -5,14 +5,16 @@ public class MeliListItem {
     private int price;
     private String title;
     private String description;
+    private String id;
 
     public MeliListItem () {
         super();
     }
 
-    public MeliListItem (String image, int price, String title, String description) {
+    public MeliListItem (String image, String id, int price, String title, String description) {
         super();
         this.image = image;
+        this.id = id;
         this.price = price;
         this.title = title;
         this.description = description;
@@ -48,5 +50,13 @@ public class MeliListItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

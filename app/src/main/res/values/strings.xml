@@ -10,7 +10,8 @@
     <string name="fecha">dd/mm/aa</string>
     <string name="huesped">1 Huesped</string>
     <string name="description_img">Imagen del departamento</string>
-    <string name="title_activity_listado">ListadoActivity</string>
+    <string name="title_activity_listado">Resultados</string>
+    <string name="title_activity_inmueble">Inmueble</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

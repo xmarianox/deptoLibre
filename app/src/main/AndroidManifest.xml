@@ -8,6 +8,7 @@
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -27,6 +28,10 @@
         <activity
             android:name=".ListadoActivity"
             android:label="@string/title_activity_listado" >
+        </activity>
+        <activity
+            android:name=".InmuebleActivity"
+            android:label="@string/title_activity_inmueble" >
         </activity>
     </application>
 

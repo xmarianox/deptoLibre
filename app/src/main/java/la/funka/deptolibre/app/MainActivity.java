@@ -98,7 +98,6 @@ public class MainActivity extends Activity {
                 startActivity(resultado);
             }
         });
-
     }
 
     public String getMeliID(String lugar){

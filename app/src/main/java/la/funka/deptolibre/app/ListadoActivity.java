@@ -2,9 +2,15 @@ package la.funka.deptolibre.app;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -41,38 +47,45 @@ public class ListadoActivity extends ListActivity {
         String hasta = getIntent().getStringExtra("hasta");
         String huespedes = getIntent().getStringExtra("huespedes");
 
-        // Enviamos la consulta a la api.
-        try {
-            new BuscarMeli().execute("http://www.deptolibre.com/api/v1/realestate/search?State="+ URLEncoder.encode(lugar_id, "utf-8") +"&From="+ URLEncoder.encode(desde, "utf-8") +"&Until="+ URLEncoder.encode(hasta, "utf-8") +"&Guests="+ URLEncoder.encode(huespedes, "utf-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        if (isNetworkAvailable() == true) {
+            // Enviamos la consulta a la api.
+            try {
+                new BuscarMeli().execute("http://www.deptolibre.com/api/v1/realestate/search?State=" + URLEncoder.encode(lugar_id, "utf-8") + "&From=" + URLEncoder.encode(desde, "utf-8") + "&Until=" + URLEncoder.encode(hasta, "utf-8") + "&Guests=" + URLEncoder.encode(huespedes, "utf-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
 
-        // Instanciamos el adaptador.
-        meliAdapter = new MeliAdapter(this, R.layout.meli_list_item, lista_meli);
-        setListAdapter(meliAdapter);
+            // Instanciamos el adaptador.
+            meliAdapter = new MeliAdapter(this, R.layout.meli_list_item, lista_meli);
+            setListAdapter(meliAdapter);
+        } else {
+            Toast.makeText(this, "Ha ocurrido un error, estas seguro de que tienes internet??", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        String meli_id = lista_meli.get(position).getId();
+        String nombre = lista_meli.get(position).getTitle();
+        //Toast.makeText(this, "Item seleccionado: "+ nombre + " id: "+ meli_id, Toast.LENGTH_SHORT).show();
+
+        Intent intent_inmueble = new Intent(ListadoActivity.this, InmuebleActivity.class);
+        intent_inmueble.putExtra("inmueble_id", meli_id);
+        startActivity(intent_inmueble);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
     /**
      *   BuscarMeli:
      *   - - - - - -
      *   http://www.deptolibre.com/api/v1/realestate/search?State=TUxBUENBUGw3M2E1&From=20/10/2014&Until=20/11/2014&Guests=2
-     *
-     *   Modelo JSON:
-     *   - - - - - -
-     *   {
-     *      Operacion: "Alquiler Temporario en Capital Federal",
-     *      available_filters: [],
-     *      available_sorts: [],
-     *      filters: [],
-     *      Paging: {},
-     *      query: "?",
-     *      related_results: [ ],
-     *      results: [],
-     *      secondary_results: [ ],
-     *      site_id: "MLA",
-     *      Sort: {}
-     *   }
      */
     public class BuscarMeli extends AsyncTask<String, Void, String> {
         ProgressDialog dialog;
@@ -122,13 +135,11 @@ public class ListadoActivity extends ListActivity {
                     String title = listadoJson.getString("title");
                     String subtitle = listadoJson.getString("subtitle");
                     String thumbnail = listadoJson.getString("thumbnail");
+                    String id = listadoJson.getString("id");
                     int price = listadoJson.getInt("price");
 
-                    //Log.i("Datos Traidos por el jason: Title: ", title);
-                    //Log.i("Datos Traidos por el jason: SubTitle: ", subtitle);
-
                     //public MeliListItem (int image, int price, String title, String description)
-                    lista_meli.add(new MeliListItem(thumbnail, price, title, subtitle));
+                    lista_meli.add(new MeliListItem(thumbnail, id, price, title, subtitle));
                 }
                 meliAdapter.notifyDataSetChanged();
             } catch (JSONException e) {
