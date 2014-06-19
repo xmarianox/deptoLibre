@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red_price">#900</color>
+    <color name="green_ok">#4b2</color>
+    <color name="text">#555</color>
+    <color name="text_button">#FFF</color>
+    <color name="text_input">#BBBEB6</color>
+    <color name="background">#EBEBE2</color>
+</resources>

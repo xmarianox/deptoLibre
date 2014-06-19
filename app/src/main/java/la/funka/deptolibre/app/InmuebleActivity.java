@@ -80,9 +80,6 @@ public class InmuebleActivity extends Activity {
         } else {
             Toast.makeText(this, "Ha ocurrido un error, estas seguro de que tienes internet??", Toast.LENGTH_LONG).show();
         }
-
-
-
     }
 
     private boolean isNetworkAvailable() {
@@ -139,33 +136,25 @@ public class InmuebleActivity extends Activity {
                 JSONArray jsonArray = json.getJSONArray("pictures");
 
                 for (int i = 0; i< jsonArray.length(); i++){
-
                     JSONObject jsonList = jsonArray.getJSONObject(i);
-
                     String img_url = jsonList.getString("url");
-
                     ImageView img_inmueble = new ImageView(getApplicationContext());
-
                     new DownloadImageTask(img_inmueble).execute(img_url);
-
                     flippy.addView(img_inmueble);
                 }
-                /*
-                img_inmueble = (ImageView) findViewById(R.id.img_inmueble);
-                new DownloadImageTask(img_inmueble).execute(img_url);
-                */
+
                 String price = String.valueOf(json.getInt("price"));
                 price_inmueble = (TextView) findViewById(R.id.price_inmueble);
-                price_inmueble.setText(price);
+                price_inmueble.setText("$"+price);
 
                 boolean mercadoPago = json.getBoolean("accepts_mercadopago");
                 mercado_pago = (TextView) findViewById(R.id.mercado_pago);
                 if ( mercadoPago == true ) {
                     mercado_pago.setText("Se acepta MercadoPago.");
-                    //mercado_pago.setTextColor(Color.parseColor("#4b2"));
+                    mercado_pago.setTextColor(getResources().getColor(R.color.green_ok));
                 } else {
                     mercado_pago.setText("No se acepta MercadoPago.");
-                    //mercado_pago.setTextColor(Color.parseColor("#900"));
+                    mercado_pago.setTextColor(getResources().getColor(R.color.red_price));
                 }
 
                 JSONObject jsonLocation = json.getJSONObject("location");
