@@ -10,9 +10,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,6 +41,15 @@ public class InmuebleActivity extends Activity {
     TextView mercado_pago;
     TextView garantia;
     TextView direccion_inmueble;
+    ViewFlipper flippy;
+
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+
+    private Context mContext;
+
+    private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,15 +59,29 @@ public class InmuebleActivity extends Activity {
         // Traemos los datos del otro activity.
         String meli_id = getIntent().getStringExtra("inmueble_id");
 
+        mContext = this;
+        flippy = (ViewFlipper) this.findViewById(R.id.view_flipper);
+
         if (isNetworkAvailable() == true) {
             try {
                 new BuscarMeli().execute("https://api.mercadolibre.com/items/" + URLEncoder.encode(meli_id, "utf-8"));
+
+                flippy.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        detector.onTouchEvent(event);
+                        return true;
+                    }
+                });
+
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
         } else {
             Toast.makeText(this, "Ha ocurrido un error, estas seguro de que tienes internet??", Toast.LENGTH_LONG).show();
         }
+
+
 
     }
 
@@ -109,11 +137,23 @@ public class InmuebleActivity extends Activity {
                 title_inmueble.setText(title);
 
                 JSONArray jsonArray = json.getJSONArray("pictures");
-                JSONObject jsonList = jsonArray.getJSONObject(0);
-                String img_url = jsonList.getString("url");
+
+                for (int i = 0; i< jsonArray.length(); i++){
+
+                    JSONObject jsonList = jsonArray.getJSONObject(i);
+
+                    String img_url = jsonList.getString("url");
+
+                    ImageView img_inmueble = new ImageView(getApplicationContext());
+
+                    new DownloadImageTask(img_inmueble).execute(img_url);
+
+                    flippy.addView(img_inmueble);
+                }
+                /*
                 img_inmueble = (ImageView) findViewById(R.id.img_inmueble);
                 new DownloadImageTask(img_inmueble).execute(img_url);
-
+                */
                 String price = String.valueOf(json.getInt("price"));
                 price_inmueble = (TextView) findViewById(R.id.price_inmueble);
                 price_inmueble.setText(price);
@@ -163,6 +203,29 @@ public class InmuebleActivity extends Activity {
 
         protected void onPostExecute(Bitmap result) {
             miImageView.setImageBitmap(result);
+        }
+    }
+
+    class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            try {
+                // right to left swipe
+                if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    flippy.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_in));
+                    flippy.setOutAnimation(AnimationUtils.loadAnimation(mContext, R.anim.left_out));
+                    flippy.showNext();
+                    return true;
+                } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                    flippy.setInAnimation(AnimationUtils.loadAnimation(mContext, R.anim.right_in));
+                    flippy.setOutAnimation(AnimationUtils.loadAnimation(mContext,R.anim.right_out));
+                    flippy.showPrevious();
+                    return true;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
         }
     }
 }

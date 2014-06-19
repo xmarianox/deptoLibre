@@ -29,6 +29,7 @@
         <item name="android:textColor">#555</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold|italic</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 
     <style name="textSubTitle" parent="@android:style/Widget.TextView">
