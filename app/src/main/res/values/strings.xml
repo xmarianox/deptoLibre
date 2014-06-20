@@ -2,8 +2,6 @@
 <resources>
 
     <string name="app_name">Depto Libre</string>
-    <string name="action_settings">Settings</string>
-
     <!-- Pantalla principal -->
     <string name="buscar_depto">Dónde buscas?</string>
     <string name="btn_buscar">Buscar</string>
