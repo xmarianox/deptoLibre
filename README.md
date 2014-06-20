@@ -1,5 +1,5 @@
-#Depto Libre
-##Aplicación Android para el Desafío Mobile 2014 de Mercado Libre.
+Depto Libre
+Aplicación Android para el Desafío Mobile 2014 de Mercado Libre.
 ===========
 
 Depto Libre es una App Mobile desarrollada en Android que tiene como objetivo buscar y reservar  alquileres temporales publicados en Mercadolibre.
