@@ -201,7 +201,6 @@ public class InmuebleActivity extends FragmentActivity implements GoogleMap.OnMa
                 String id_description = jsonID.getString("id");
 
                 // Descripcion del inmueble
-                // https://api.mercadolibre.com/items/MLA494968454/descriptions/MLA494968454-536112494
                 try {
                     new BuscarMeliDescription().execute("https://api.mercadolibre.com/items/" + URLEncoder.encode(meli_id, "utf-8") + "/descriptions/" + URLEncoder.encode(id_description, "utf-8"));
                 } catch (UnsupportedEncodingException e) {
