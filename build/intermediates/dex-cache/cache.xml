@@ -14,6 +14,12 @@
         revision="19.1.0"
         sha1="3d645417e7780d44f32e29a3ec6b729b75aef26c"/>
     <item
+        dex="/Users/Mariano/AndroidStudioProjects/DeptoLibre/app/build/intermediates/pre-dexed/debug/classes-2aa3d38c8c5540858d9f3a6d0501839d96e09047.jar"
+        jar="/Users/Mariano/AndroidStudioProjects/DeptoLibre/build/intermediates/exploded-aar/com.google.android.gms/play-services/4.0.30/classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="cebe8e4a3a469c4623addcca1dc571407ff3a08e"/>
+    <item
         dex="/Users/Mariano/AndroidStudioProjects/DeptoLibre/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-9530e923dc78d85e52f0293032e55dd481470688.jar"
         jar="/Users/Mariano/Development/ADT/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
         jumboMode="false"

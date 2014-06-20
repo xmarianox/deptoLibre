@@ -56,6 +56,19 @@
                 android:id="@+id/direccion_inmueble"
                 style="@style/textSubTitle"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_map"
+                android:id="@+id/title_map"
+                style="@style/textTitleInmueble"/>
+
+            <fragment
+                android:id="@+id/map"
+                android:layout_width="fill_parent"
+                android:layout_height="350dp"
+                class="com.google.android.gms.maps.SupportMapFragment"/>
+
         </LinearLayout>
 
     </ScrollView>

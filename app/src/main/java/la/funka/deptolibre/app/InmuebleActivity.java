@@ -1,6 +1,5 @@
 package la.funka.deptolibre.app;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -9,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -18,6 +18,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -33,28 +40,30 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-public class InmuebleActivity extends Activity {
+public class InmuebleActivity extends FragmentActivity implements GoogleMap.OnMapClickListener {
 
-    TextView title_inmueble;
-    ImageView img_inmueble;
-    TextView price_inmueble;
-    TextView mercado_pago;
-    TextView garantia;
-    TextView direccion_inmueble;
-    ViewFlipper flippy;
+    private TextView title_inmueble;
+    private ImageView img_inmueble;
+    private TextView price_inmueble;
+    private TextView mercado_pago;
+    private TextView direccion_inmueble;
+    private ViewFlipper flippy;
 
+    // Swipper
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-
     private Context mContext;
-
     private final GestureDetector detector = new GestureDetector(new SwipeGestureDetector());
 
+    // Maps
+    private GoogleMap mapa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inmueble);
+
+        mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
         // Traemos los datos del otro activity.
         String meli_id = getIntent().getStringExtra("inmueble_id");
@@ -86,6 +95,11 @@ public class InmuebleActivity extends Activity {
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+
     }
 
     public class BuscarMeli extends AsyncTask<String, Void, String> {
@@ -138,7 +152,7 @@ public class InmuebleActivity extends Activity {
                 for (int i = 0; i< jsonArray.length(); i++){
                     JSONObject jsonList = jsonArray.getJSONObject(i);
                     String img_url = jsonList.getString("url");
-                    ImageView img_inmueble = new ImageView(getApplicationContext());
+                    img_inmueble = new ImageView(getApplicationContext());
                     new DownloadImageTask(img_inmueble).execute(img_url);
                     flippy.addView(img_inmueble);
                 }
@@ -162,11 +176,28 @@ public class InmuebleActivity extends Activity {
                 direccion_inmueble = (TextView) findViewById(R.id.direccion_inmueble);
                 direccion_inmueble.setText(direccion);
 
+                // Mapas
+                // LatLng UPV = new LatLng(39.481106, -0.340987);
+                Double latitude = jsonLocation.getDouble("latitude");
+                Double longitude = jsonLocation.getDouble("longitude");
+                LatLng meli_inmueble = new LatLng(latitude, longitude);
+
+                mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(meli_inmueble, 15));
+                mapa.setMyLocationEnabled(true);
+                mapa.getUiSettings().setZoomControlsEnabled(false);
+                mapa.getUiSettings().setCompassEnabled(true);
+                mapa.addMarker(new MarkerOptions()
+                        .position(meli_inmueble)
+                        .title(title)
+                        .snippet("Depto Libre.")
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_launcher))
+                        .anchor(0.5f, 0.5f));
+                mapa.setOnMapClickListener(InmuebleActivity.this);
+
             } catch (JSONException e) {
                 e.printStackTrace();
                 Toast.makeText(InmuebleActivity.this, "Ocurrio un error al buscar el inmueble...", Toast.LENGTH_SHORT).show();
             }
-
         }
     }
 
