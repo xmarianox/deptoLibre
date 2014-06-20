@@ -13,5 +13,6 @@
     <string name="title_activity_listado">Resultados</string>
     <string name="title_activity_inmueble">Inmueble</string>
     <string name="title_map">Ubicación geográfica del inmueble</string>
+    <string name="title_description">Descripción del inmueble</string>
 
 </resources>

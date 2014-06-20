@@ -22,7 +22,8 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.13">
+        android:layout_weight="0.13"
+        android:paddingBottom="10dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -39,17 +40,6 @@
             android:layout_toRightOf="@+id/meli_price"
             android:layout_alignParentTop="true"
             style="@style/textTitle" />
-
-        <!--TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lorem ipsum"
-            android:id="@+id/meli_description"
-            android:layout_gravity="center_horizontal"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/meli_title"
-            android:layout_alignStart="@+id/meli_title"
-            style="@style/textSubTitle"/-->
 
     </RelativeLayout>
 </LinearLayout>
