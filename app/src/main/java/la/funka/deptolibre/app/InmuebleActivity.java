@@ -167,10 +167,10 @@ public class InmuebleActivity extends FragmentActivity implements GoogleMap.OnMa
                 boolean mercadoPago = json.getBoolean("accepts_mercadopago");
                 mercado_pago = (TextView) findViewById(R.id.mercado_pago);
                 if ( mercadoPago == true ) {
-                    mercado_pago.setText("Se acepta MercadoPago.");
+                    mercado_pago.setText(getResources().getText(R.string.text_mercadopago_true));
                     mercado_pago.setTextColor(getResources().getColor(R.color.green_ok));
                 } else {
-                    mercado_pago.setText("No se acepta MercadoPago.");
+                    mercado_pago.setText(getResources().getText(R.string.text_mercadopago_false));
                     mercado_pago.setTextColor(getResources().getColor(R.color.red_price));
                 }
 

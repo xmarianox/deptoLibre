@@ -5,6 +5,7 @@
     <!-- Pantalla principal -->
     <string name="buscar_depto">Dónde buscas?</string>
     <string name="btn_buscar">Buscar</string>
+    <string name="btn_reservar">Hacer Reserva</string>
     <string name="fecha">dd/mm/aa</string>
     <string name="huesped">1 Huesped</string>
     <string name="description_img">Imagen del departamento</string>
@@ -12,5 +13,8 @@
     <string name="title_activity_inmueble">Inmueble</string>
     <string name="title_map">Ubicación geográfica del inmueble</string>
     <string name="title_description">Descripción del inmueble</string>
+
+    <string name="text_mercadopago_true">Se acepta MercadoPago.</string>
+    <string name="text_mercadopago_false">No se acepta MercadoPago.</string>
 
 </resources>
