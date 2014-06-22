@@ -6,4 +6,5 @@
     <color name="text_button">#FFF</color>
     <color name="text_input">#BBBEB6</color>
     <color name="background">#EBEBE2</color>
+    <color name="actionbar">#1079BF</color>
 </resources>
