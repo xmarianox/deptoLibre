@@ -1,98 +1,106 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="la.funka.deptolibre.app.MainActivity"
-    android:background="@color/background"
-    android:gravity="center_horizontal">
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="la.funka.deptolibre.app.MainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/actionbar"
+        android:fitsSystemWindows="true">
 
-    <!-- Logo -->
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo"
-        android:id="@+id/logo"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@color/background"
+        android:gravity="center_horizontal">
 
-    <!-- Filtro por zonas -->
-    <AutoCompleteTextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/input_buscar"
-        android:layout_below="@+id/logo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="36dp"
-        android:hint="@string/buscar_depto"
-        android:background="@drawable/input"
-        style="@style/textInput"/>
-
-    <!-- Filtros por fecha y huespedes -->
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/content_campos"
-        android:layout_below="@+id/input_buscar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_marginTop="16dp">
-
-        <EditText
+        <!-- Logo -->
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/input_desde"
-            android:layout_weight="0.27"
-            android:background="@drawable/input"
-            style="@style/textInputFecha"
-            android:layout_marginRight="6dp"
-            android:hint="@string/fecha"/>
+            android:src="@drawable/logo"
+            android:id="@+id/logo"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"/>
 
-        <EditText
+        <!-- Filtro por zonas -->
+        <AutoCompleteTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/input_buscar"
+            android:layout_below="@+id/logo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="36dp"
+            android:hint="@string/buscar_depto"
+            android:background="@drawable/input"
+            style="@style/textInput"/>
+
+        <!-- Filtros por fecha y huespedes -->
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:id="@+id/input_hasta"
-            android:layout_weight="0.27"
-            android:background="@drawable/input"
-            style="@style/textInputFecha"
-            android:layout_marginRight="6dp"
-            android:hint="@string/fecha"/>
+            android:id="@+id/content_campos"
+            android:layout_below="@+id/input_buscar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_marginTop="16dp">
 
-        <EditText
-            android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/input_desde"
+                android:layout_weight="0.27"
+                android:background="@drawable/input"
+                style="@style/textInputFecha"
+                android:layout_marginRight="6dp"
+                android:hint="@string/fecha"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/input_hasta"
+                android:layout_weight="0.27"
+                android:background="@drawable/input"
+                style="@style/textInputFecha"
+                android:layout_marginRight="6dp"
+                android:hint="@string/fecha"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/input_huesped"
+                android:layout_weight="0.27"
+                android:background="@drawable/input"
+                style="@style/textInputFecha"
+                android:hint="@string/huesped"/>
+
+        </LinearLayout>
+
+        <!-- Boton de busqueda -->
+        <Button
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/input_huesped"
-            android:layout_weight="0.27"
-            android:background="@drawable/input"
-            style="@style/textInputFecha"
-            android:hint="@string/huesped"/>
+            android:text="@string/btn_buscar"
+            android:id="@+id/btn_buscar"
+            android:background="@drawable/button"
+            style="@style/textButton"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/content_campos"
+            android:layout_centerHorizontal="true"/>
 
-    </LinearLayout>
-
-    <!-- Boton de busqueda -->
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_buscar"
-        android:id="@+id/btn_buscar"
-        android:background="@drawable/button"
-        style="@style/textButton"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/content_campos"
-        android:layout_centerHorizontal="true"/>
-
-</RelativeLayout>
+    </RelativeLayout>
+</FrameLayout>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.Calendar;
 
@@ -36,6 +38,14 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Only set the tint if the devices is running KitKat
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintEnabled(true);
+            int actionBarColor = getResources().getColor(R.color.actionbar);
+            tintManager.setStatusBarTintColor(actionBarColor);
+        }
 
         // Libreria de Parse agregada.
         Parse.initialize(this, "6AB3RUUYwMaX034QApFKA0HQ0m88D6WHpu9XSeCT", "qStZKK3QhvZpUZC5GBdoX38J9PVaLssksIFGPdvl");

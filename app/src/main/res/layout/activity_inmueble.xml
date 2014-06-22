@@ -1,100 +1,108 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="la.funka.deptolibre.app.InmuebleActivity"
-    android:background="@color/background"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/actionbar"
+    android:fitsSystemWindows="true">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/scrollView"
-        android:layout_gravity="center_horizontal">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:background="@color/background"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="fill_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/title_inmueble"
-                style="@style/textTitleInmueble"/>
-
-            <ViewFlipper
-                android:id="@+id/view_flipper"
+            <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="250dp"
-                android:background="#FFF">
-            </ViewFlipper>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/price_inmueble"
-                style="@style/textPrecioInmueble"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/title_inmueble"
+                    style="@style/textTitleInmueble"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/mercado_pago"
-                style="@style/textSubTitle"/>
+                <ViewFlipper
+                    android:id="@+id/view_flipper"
+                    android:layout_width="fill_parent"
+                    android:layout_height="250dp"
+                    android:background="#FFF">
+                </ViewFlipper>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:id="@+id/direccion_inmueble"
-                style="@style/textSubTitle"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/price_inmueble"
+                    style="@style/textPrecioInmueble"/>
 
-            <!-- Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/btn_reservar"
-                android:background="@drawable/button"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                style="@style/textButton"/ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/mercado_pago"
+                    style="@style/textSubTitle"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_map"
-                android:id="@+id/title_map"
-                style="@style/textTitleInmueble"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:id="@+id/direccion_inmueble"
+                    style="@style/textSubTitle"/>
 
-            <fragment
-                android:id="@+id/map"
-                android:layout_width="fill_parent"
-                android:layout_height="350dp"
-                android:layout_marginBottom="10dp"
-                class="com.google.android.gms.maps.SupportMapFragment"/>
+                <!-- Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_reservar"
+                    android:background="@drawable/button"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    style="@style/textButton"/ -->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/title_description"
-                android:id="@+id/title_description"
-                style="@style/textTitleInmueble"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_map"
+                    android:id="@+id/title_map"
+                    style="@style/textTitleInmueble"/>
 
-            <WebView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/web_description"/>
+                <fragment
+                    android:id="@+id/map"
+                    android:layout_width="fill_parent"
+                    android:layout_height="350dp"
+                    android:layout_marginBottom="10dp"
+                    class="com.google.android.gms.maps.SupportMapFragment"/>
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_description"
+                    android:id="@+id/title_description"
+                    style="@style/textTitleInmueble"/>
 
-    </ScrollView>
+                <WebView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/web_description"/>
 
-</LinearLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+</FrameLayout>

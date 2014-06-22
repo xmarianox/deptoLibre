@@ -20,6 +20,12 @@
         revision="19.1.0"
         sha1="cebe8e4a3a469c4623addcca1dc571407ff3a08e"/>
     <item
+        dex="/Users/Mariano/AndroidStudioProjects/DeptoLibre/app/build/intermediates/pre-dexed/debug/systembartint-1.0.3-10e4604970d81c58566441e64fb07f8c3753be34.jar"
+        jar="/Users/Mariano/AndroidStudioProjects/DeptoLibre/app/libs/systembartint-1.0.3.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="de4f7404e2f58d8f6e83cb1e85d0c2d6c2987287"/>
+    <item
         dex="/Users/Mariano/AndroidStudioProjects/DeptoLibre/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-9530e923dc78d85e52f0293032e55dd481470688.jar"
         jar="/Users/Mariano/Development/ADT/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
         jumboMode="false"
